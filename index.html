@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baccarat Third Card Training</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="stats">
+            <div class="counter">Correct: <span id="correct-count">0</span></div>
+            <div class="counter">Incorrect: <span id="incorrect-count">0</span></div>
+            <div class="counter">Hands: <span id="hands-count">0</span></div>
+        </div>
+
+        <div class="baccarat-table">
+            <div class="player-area">
+                <h2>Player</h2>
+                <div class="cards-area" id="player-cards">
+                    <div class="card-slot" id="player-card-1"></div>
+                    <div class="card-slot" id="player-card-2"></div>
+                    <div class="card-slot" id="player-card-3"></div>
+                </div>
+            </div>
+
+            <div class="banker-area">
+                <h2>Banker</h2>
+                <div class="cards-area" id="banker-cards">
+                    <div class="card-slot" id="banker-card-1"></div>
+                    <div class="card-slot" id="banker-card-2"></div>
+                    <div class="card-slot" id="banker-card-3"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="decision-area">
+            <div id="prompt" class="prompt"></div>
+            <div id="options" class="options"></div>
+            <div id="feedback" class="feedback"></div>
+        </div>
+
+        <button id="new-hand" class="new-hand-btn">New Hand</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
