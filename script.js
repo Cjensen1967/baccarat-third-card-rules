@@ -12,12 +12,7 @@ class BaccaratTrainer {
             bankerThirdCard: null
         };
         this.currentStep = 'natural';
-        this.setupEventListeners();
         this.dealNewHand();
-    }
-
-    setupEventListeners() {
-        document.getElementById('new-hand').addEventListener('click', () => this.dealNewHand());
     }
 
     dealNewHand() {
