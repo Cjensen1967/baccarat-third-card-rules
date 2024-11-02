@@ -1,13 +1,16 @@
 :root {
     --table-green: #006B3C;
     --gold: #D4AF37;
+    --dark-gold: #B4941F;
+    --error-red: #ff4444;
+    --success-green: #4CAF50;
 }
 
 body {
     margin: 0;
     padding: 20px;
-    font-family: Arial, sans-serif;
-    background-color: #1a1a1a;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #1a1a1a, #2d2d2d);
     color: white;
     min-height: 100vh;
 }
@@ -15,115 +18,174 @@ body {
 .game-container {
     max-width: 800px;
     margin: 0 auto;
-    background-color: rgba(0, 0, 0, 0.8);
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.85);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
 }
 
 .stats {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 20px;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 10px;
-    border-radius: 8px;
+    margin-bottom: 25px;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7));
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid var(--gold);
 }
 
 .counter {
-    font-size: 1.2em;
+    font-size: 1.3em;
     color: var(--gold);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .baccarat-table {
-    background-color: var(--table-green);
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(145deg, var(--table-green) 0%, #005830 100%);
+    border-radius: 25px;
+    padding: 35px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     border: 2px solid var(--gold);
+    position: relative;
 }
 
 .player-area, .banker-area {
-    margin: 20px 0;
+    margin: 30px 0;
     text-align: center;
 }
 
 .cards-area {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin: 10px 0;
+    gap: 15px;
+    margin: 15px 0;
+    perspective: 1000px;
 }
 
 .card-slot {
-    width: 100px;
-    height: 145px;
+    width: 120px;
+    height: 174px;
     background-color: rgba(255, 255, 255, 0.1);
     border: 2px dashed rgba(255, 255, 255, 0.3);
-    border-radius: 8px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.card-slot:hover {
+    transform: translateY(-5px);
 }
 
 .card-slot img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .decision-area {
-    background-color: rgba(0, 0, 0, 0.9);
-    padding: 20px;
-    border-radius: 0 0 10px 10px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.95));
+    padding: 25px;
+    border-radius: 0 0 15px 15px;
     text-align: center;
-    border-top: 2px solid var(--gold);
 }
 
 .prompt {
-    font-size: 1.2em;
-    margin-bottom: 15px;
-    color: white;
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    color: var(--gold);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     text-align: center;
 }
 
 .options {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
     flex-wrap: wrap;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .option-btn {
-    padding: 12px 24px;
-    font-size: 1em;
-    background-color: #333;
-    color: white;
-    border: 1px solid var(--gold);
-    border-radius: 5px;
+    padding: 14px 28px;
+    font-size: 1.1em;
+    background: linear-gradient(145deg, #333 0%, #444 100%);
+    color: var(--gold);
+    border: 2px solid var(--gold);
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .option-btn:hover {
-    background-color: #444;
+    background: linear-gradient(145deg, #444 0%, #555 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.option-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .feedback {
-    margin-top: 15px;
+    margin-top: 20px;
     text-align: center;
     font-weight: bold;
+    font-size: 1.1em;
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
     min-height: 24px;
 }
 
 .feedback.correct {
-    color: #4CAF50;
+    color: var(--success-green);
+    background-color: rgba(76, 175, 80, 0.1);
+    border: 1px solid var(--success-green);
 }
 
 .feedback.incorrect {
-    color: #f44336;
+    color: var(--error-red);
+    background-color: rgba(244, 67, 54, 0.1);
+    border: 1px solid var(--error-red);
 }
 
 h2 {
     color: var(--gold);
     margin: 0;
-    font-size: 1.5em;
+    font-size: 1.6em;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 1px;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .game-container {
+        padding: 15px;
+    }
+
+    .card-slot {
+        width: 90px;
+        height: 130px;
+    }
+
+    .option-btn {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+
+    .prompt {
+        font-size: 1.1em;
+    }
+
+    h2 {
+        font-size: 1.3em;
+    }
 }
