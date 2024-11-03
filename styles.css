@@ -8,7 +8,7 @@
 
 body {
     margin: 0;
-    padding: 20px;
+    padding: 10px;
     font-family: 'Arial', sans-serif;
     background: linear-gradient(to bottom, #1a1a1a, #2d2d2d);
     color: white;
@@ -24,22 +24,22 @@ body {
     margin: 0 auto;
     background-color: rgba(0, 0, 0, 0.85);
     border-radius: 20px;
-    padding: 30px;
+    padding: 15px;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
 }
 
 .stats {
     display: flex;
     justify-content: space-around;
-    margin-top: 30px;
+    margin-top: 10px;
     background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7));
-    padding: 20px;
+    padding: 10px;
     border-radius: 12px;
     border: 2px solid var(--gold);
 }
 
 .counter {
-    font-size: 1.4em;
+    font-size: 1.2em;
     color: var(--gold);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     font-weight: bold;
@@ -52,29 +52,29 @@ body {
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
     border: 3px solid var(--gold);
     position: relative;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .player-area, .banker-area {
-    margin: 20px 0;
+    margin: 10px 0;
     text-align: center;
 }
 
 .player-area {
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 
 .cards-area {
     display: flex;
     justify-content: center;
     gap: 25px;
-    margin: 20px 0;
+    margin: 10px 0;
     perspective: 1000px;
 }
 
 .card-slot {
-    width: 140px;
-    height: 203px; /* Maintaining 7:10 aspect ratio */
+    width: 120px;
+    height: 174px; /* Maintaining 7:10 aspect ratio */
     background-color: rgba(255, 255, 255, 0.1);
     border: 2px dashed rgba(255, 255, 255, 0.3);
     border-radius: 10px;
@@ -111,8 +111,8 @@ body {
 }
 
 .prompt {
-    font-size: 1.5em;
-    margin-bottom: 25px;
+    font-size: 1.3em;
+    margin-bottom: 15px;
     color: var(--gold);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     text-align: center;
@@ -122,14 +122,14 @@ body {
 .options {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
     flex-wrap: wrap;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 .option-btn {
-    padding: 16px 32px;
-    font-size: 1.2em;
+    padding: 12px 24px;
+    font-size: 1.1em;
     background: linear-gradient(145deg, #333 0%, #444 100%);
     color: var(--gold);
     border: 2px solid var(--gold);
@@ -154,14 +154,14 @@ body {
 }
 
 .feedback {
-    margin-top: 25px;
+    margin-top: 15px;
     text-align: center;
     font-weight: bold;
-    font-size: 1.2em;
-    padding: 15px;
+    font-size: 1.1em;
+    padding: 10px;
     border-radius: 10px;
     transition: all 0.3s ease;
-    min-height: 30px;
+    min-height: 24px;
 }
 
 .feedback.correct {
@@ -181,7 +181,7 @@ body {
 h2 {
     color: var(--gold);
     margin: 0;
-    font-size: 1.8em;
+    font-size: 1.6em;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -189,47 +189,21 @@ h2 {
 
 @media (max-width: 768px) {
     body {
-        padding: 15px;
+        padding: 10px;
     }
 
     .game-container {
-        padding: 20px;
+        padding: 15px;
     }
 
     .card-slot {
-        width: 100px;
-        height: 145px;
+        width: 90px;
+        height: 130px;
     }
 
     .option-btn {
-        padding: 14px 24px;
-        font-size: 1.1em;
-    }
-
-    .prompt {
-        font-size: 1.3em;
-    }
-
-    h2 {
-        font-size: 1.5em;
-    }
-}
-
-@media (max-width: 480px) {
-    .card-slot {
-        width: 80px;
-        height: 116px;
-    }
-
-    .option-btn {
-        padding: 12px 20px;
+        padding: 10px 20px;
         font-size: 1em;
-        width: 100%;
-    }
-
-    .options {
-        flex-direction: column;
-        gap: 10px;
     }
 
     .prompt {
@@ -237,6 +211,32 @@ h2 {
     }
 
     h2 {
-        font-size: 1.3em;
+        font-size: 1.4em;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-slot {
+        width: 70px;
+        height: 101px;
+    }
+
+    .option-btn {
+        padding: 8px 16px;
+        font-size: 0.9em;
+        width: 100%;
+    }
+
+    .options {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .prompt {
+        font-size: 1.1em;
+    }
+
+    h2 {
+        font-size: 1.2em;
     }
 }
