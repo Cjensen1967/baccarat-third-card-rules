@@ -8,7 +8,7 @@
 
 body {
     margin: 0;
-    padding: 10px;
+    padding: 5px;
     font-family: 'Arial', sans-serif;
     background: linear-gradient(to bottom, #1a1a1a, #2d2d2d);
     color: white;
@@ -24,22 +24,22 @@ body {
     margin: 0 auto;
     background-color: rgba(0, 0, 0, 0.85);
     border-radius: 20px;
-    padding: 15px;
+    padding: 10px;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
 }
 
 .stats {
     display: flex;
     justify-content: space-around;
-    margin-top: 10px;
+    margin-top: 8px;
     background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7));
-    padding: 8px;
+    padding: 6px;
     border-radius: 12px;
     border: 2px solid var(--gold);
 }
 
 .counter {
-    font-size: 1.2em;
+    font-size: 1.1em;
     color: var(--gold);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     font-weight: bold;
@@ -52,23 +52,23 @@ body {
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
     border: 3px solid var(--gold);
     position: relative;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .player-area, .banker-area {
-    margin: 8px 0;
+    margin: 6px 0;
     text-align: center;
 }
 
 .player-area {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .cards-area {
     display: flex;
     justify-content: center;
-    gap: 15px;
-    margin: 8px 0;
+    gap: 12px;
+    margin: 6px 0;
     perspective: 1000px;
 }
 
@@ -111,8 +111,8 @@ body {
 }
 
 .prompt {
-    font-size: 1.3em;
-    margin-bottom: 12px;
+    font-size: 1.2em;
+    margin-bottom: 10px;
     color: var(--gold);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     text-align: center;
@@ -122,14 +122,14 @@ body {
 .options {
     display: flex;
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
     flex-wrap: wrap;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .option-btn {
-    padding: 10px 20px;
-    font-size: 1.1em;
+    padding: 8px 16px;
+    font-size: 1em;
     background: linear-gradient(145deg, #333 0%, #444 100%);
     color: var(--gold);
     border: 2px solid var(--gold);
@@ -154,14 +154,14 @@ body {
 }
 
 .feedback {
-    margin-top: 12px;
+    margin-top: 10px;
     text-align: center;
     font-weight: bold;
-    font-size: 1.1em;
-    padding: 8px;
+    font-size: 1em;
+    padding: 6px;
     border-radius: 10px;
     transition: all 0.3s ease;
-    min-height: 24px;
+    min-height: 20px;
 }
 
 .feedback.correct {
@@ -181,7 +181,7 @@ body {
 h2 {
     color: var(--gold);
     margin: 0;
-    font-size: 1.6em;
+    font-size: 1.4em;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -189,47 +189,21 @@ h2 {
 
 @media (max-width: 768px) {
     body {
-        padding: 10px;
+        padding: 5px;
     }
 
     .game-container {
-        padding: 15px;
+        padding: 10px;
     }
 
     .card-slot {
-        width: 85px;
-        height: 123px;
-    }
-
-    .option-btn {
-        padding: 8px 16px;
-        font-size: 1em;
-    }
-
-    .prompt {
-        font-size: 1.2em;
-    }
-
-    h2 {
-        font-size: 1.4em;
-    }
-}
-
-@media (max-width: 480px) {
-    .card-slot {
-        width: 65px;
-        height: 94px;
+        width: 80px;
+        height: 116px;
     }
 
     .option-btn {
         padding: 6px 12px;
         font-size: 0.9em;
-        width: 100%;
-    }
-
-    .options {
-        flex-direction: column;
-        gap: 6px;
     }
 
     .prompt {
@@ -237,6 +211,32 @@ h2 {
     }
 
     h2 {
-        font-size: 1.2em;
+        font-size: 1.3em;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-slot {
+        width: 60px;
+        height: 87px;
+    }
+
+    .option-btn {
+        padding: 5px 10px;
+        font-size: 0.85em;
+        width: 100%;
+    }
+
+    .options {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .prompt {
+        font-size: 1em;
+    }
+
+    h2 {
+        font-size: 1.1em;
     }
 }
