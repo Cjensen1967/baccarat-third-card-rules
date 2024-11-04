@@ -8,6 +8,12 @@
 </head>
 <body>
     <div class="game-container">
+        <div class="stats">
+            <div class="counter">Correct: <span id="correct-count">0</span></div>
+            <div class="counter">Incorrect: <span id="incorrect-count">0</span></div>
+            <div class="counter">Hands: <span id="hands-count">0</span></div>
+        </div>
+
         <div class="baccarat-table">
             <div class="player-area">
                 <h2>Player</h2>
@@ -30,14 +36,80 @@
 
         <div class="decision-area">
             <div id="prompt" class="prompt"></div>
-            <div id="options" class="options"></div>
+            <div id="options" class="options">
+                <div class="button-grid">
+                    <button class="option-btn" id="btn-1">PLAYER WIN</button>
+                    <button class="option-btn" id="btn-2">BANKER WIN</button>
+                    <button class="option-btn" id="btn-3">TIE</button>
+                    <button class="option-btn" id="btn-4">NO NATURALS</button>
+                </div>
+            </div>
             <div id="feedback" class="feedback"></div>
         </div>
 
-        <div class="stats">
-            <div class="counter">Correct: <span id="correct-count">0</span></div>
-            <div class="counter">Incorrect: <span id="incorrect-count">0</span></div>
-            <div class="counter">Hands: <span id="hands-count">0</span></div>
+        <div class="rules-section">
+            <div class="rules-block">
+                <h3>Player Hand Rules:</h3>
+                <table class="rules-table">
+                    <tr>
+                        <th>When the Player's first two cards total:</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td>0 – 5</td>
+                        <td>Player hand draws a card</td>
+                    </tr>
+                    <tr>
+                        <td>6 – 7</td>
+                        <td>Player hand stands</td>
+                    </tr>
+                    <tr>
+                        <td>8 – 9</td>
+                        <td>Natural – Neither hand draws</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="rules-block">
+                <h3>Banker Hand Rules:</h3>
+                <div class="banker-note">
+                    When the Player hand stands on 6 or 7 the Banker hand will always draw a third card on totals of 0 through 5 and stand on 6 through 9.
+                </div>
+                <table class="rules-table">
+                    <tr>
+                        <th>When the Banker's first two cards total:</th>
+                        <th>Banker draws when Player's third card is:</th>
+                    </tr>
+                    <tr>
+                        <td>0, 1, 2</td>
+                        <td>Banker hand always draws</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Banker hand draws unless Player's third card is 8</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>2 – 7</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>4 – 7</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>6 – 7</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Banker hand stands</td>
+                    </tr>
+                    <tr>
+                        <td>8 – 9</td>
+                        <td>Natural – Neither hand draws</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>

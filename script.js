@@ -12,7 +12,79 @@ class BaccaratTrainer {
             bankerThirdCard: null
         };
         this.currentStep = 'natural';
+        this.initializeButtons();
         this.dealNewHand();
+    }
+
+    initializeButtons() {
+        const buttons = ['btn-1', 'btn-2', 'btn-3', 'btn-4'];
+        buttons.forEach(btnId => {
+            const btn = document.getElementById(btnId);
+            btn.onclick = () => this.handleButtonClick(btnId);
+        });
+    }
+
+    handleButtonClick(btnId) {
+        switch(this.currentStep) {
+            case 'natural':
+                const naturalChoices = {
+                    'btn-1': 'player',
+                    'btn-2': 'banker',
+                    'btn-3': 'tie',
+                    'btn-4': 'none'
+                };
+                this.checkNatural(naturalChoices[btnId]);
+                break;
+            case 'playerDraw':
+                const drawChoices = {
+                    'btn-1': true,  // Draw
+                    'btn-2': false  // Stand
+                };
+                if (btnId in drawChoices) {
+                    this.checkPlayerDraw(drawChoices[btnId]);
+                }
+                break;
+            case 'bankerDraw':
+                const bankerChoices = {
+                    'btn-1': true,  // Draw
+                    'btn-2': false  // Stand
+                };
+                if (btnId in bankerChoices) {
+                    this.checkBankerDraw(bankerChoices[btnId]);
+                }
+                break;
+            case 'final':
+                const finalChoices = {
+                    'btn-1': 'player',
+                    'btn-2': 'banker',
+                    'btn-3': 'tie'
+                };
+                if (btnId in finalChoices) {
+                    this.checkFinalOutcome(finalChoices[btnId]);
+                }
+                break;
+        }
+    }
+
+    updateButtonStates(activeButtons, labels) {
+        // First disable all buttons during transition
+        ['btn-1', 'btn-2', 'btn-3', 'btn-4'].forEach(btnId => {
+            const btn = document.getElementById(btnId);
+            btn.disabled = true;
+        });
+
+        // Then update states after a short delay
+        setTimeout(() => {
+            ['btn-1', 'btn-2', 'btn-3', 'btn-4'].forEach((btnId, index) => {
+                const btn = document.getElementById(btnId);
+                btn.disabled = !activeButtons.includes(btnId);
+                btn.textContent = labels[index] || '';
+                // Keep button visible but disabled if no label
+                if (!labels[index]) {
+                    btn.disabled = true;
+                }
+            });
+        }, 100);
     }
 
     dealNewHand() {
@@ -68,17 +140,11 @@ class BaccaratTrainer {
 
     showNaturalDecision() {
         const prompt = document.getElementById('prompt');
-        const options = document.getElementById('options');
-        const playerValue = this.calculateHandValue(this.currentHand.player);
-        const bankerValue = this.calculateHandValue(this.currentHand.banker);
-
         prompt.textContent = "Is there a natural win?";
-        options.innerHTML = `
-            <button class="option-btn" onclick="game.checkNatural('player')">Natural Player Win</button>
-            <button class="option-btn" onclick="game.checkNatural('banker')">Natural Banker Win</button>
-            <button class="option-btn" onclick="game.checkNatural('tie')">Natural Tie</button>
-            <button class="option-btn" onclick="game.checkNatural('none')">No Naturals</button>
-        `;
+        this.updateButtonStates(
+            ['btn-1', 'btn-2', 'btn-3', 'btn-4'],
+            ['PLAYER WIN', 'BANKER WIN', 'TIE', 'NO NATURALS']
+        );
     }
 
     checkNatural(choice) {
@@ -110,15 +176,12 @@ class BaccaratTrainer {
     }
 
     showPlayerDrawDecision() {
-        const playerValue = this.calculateHandValue(this.currentHand.player);
         const prompt = document.getElementById('prompt');
-        const options = document.getElementById('options');
-
         prompt.textContent = "Should the Player draw a third card?";
-        options.innerHTML = `
-            <button class="option-btn" onclick="game.checkPlayerDraw(true)">Draw Card</button>
-            <button class="option-btn" onclick="game.checkPlayerDraw(false)">Stand</button>
-        `;
+        this.updateButtonStates(
+            ['btn-1', 'btn-2'],
+            ['DRAW', 'STAND', '', '']
+        );
     }
 
     checkPlayerDraw(shouldDraw) {
@@ -143,15 +206,12 @@ class BaccaratTrainer {
     }
 
     showBankerDrawDecision() {
-        const bankerValue = this.calculateHandValue(this.currentHand.banker);
         const prompt = document.getElementById('prompt');
-        const options = document.getElementById('options');
-
         prompt.textContent = "Should the Banker draw a third card?";
-        options.innerHTML = `
-            <button class="option-btn" onclick="game.checkBankerDraw(true)">Draw Card</button>
-            <button class="option-btn" onclick="game.checkBankerDraw(false)">Stand</button>
-        `;
+        this.updateButtonStates(
+            ['btn-1', 'btn-2'],
+            ['DRAW', 'STAND', '', '']
+        );
     }
 
     checkBankerDraw(shouldDraw) {
@@ -181,6 +241,7 @@ class BaccaratTrainer {
                 document.getElementById('banker-card-3').innerHTML = 
                     `<img src="${this.currentHand.bankerThirdCard.img}" alt="${this.currentHand.bankerThirdCard.value} of ${this.currentHand.bankerThirdCard.suit}">`;
             }
+            this.currentStep = 'final';
             setTimeout(() => this.showFinalDecision(), 1500);
         } else {
             this.showFeedback(false, "Incorrect. Check the Banker drawing rules.");
@@ -191,14 +252,11 @@ class BaccaratTrainer {
 
     showFinalDecision() {
         const prompt = document.getElementById('prompt');
-        const options = document.getElementById('options');
-
         prompt.textContent = "What is the final outcome?";
-        options.innerHTML = `
-            <button class="option-btn" onclick="game.checkFinalOutcome('player')">Player Wins</button>
-            <button class="option-btn" onclick="game.checkFinalOutcome('banker')">Banker Wins</button>
-            <button class="option-btn" onclick="game.checkFinalOutcome('tie')">Tie</button>
-        `;
+        this.updateButtonStates(
+            ['btn-1', 'btn-2', 'btn-3'],
+            ['PLAYER WIN', 'BANKER WIN', 'TIE', '']
+        );
     }
 
     checkFinalOutcome(choice) {

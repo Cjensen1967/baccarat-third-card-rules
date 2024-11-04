@@ -8,34 +8,32 @@
 
 body {
     margin: 0;
-    padding: 5px;
+    padding: 0;
     font-family: 'Arial', sans-serif;
     background: linear-gradient(to bottom, #1a1a1a, #2d2d2d);
     color: white;
     min-height: 100vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 }
 
 .game-container {
     width: 100%;
     max-width: 900px;
-    margin: 0 auto;
     background-color: rgba(0, 0, 0, 0.85);
-    border-radius: 20px;
-    padding: 10px;
+    border-radius: 0;
+    padding: 0;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
 }
 
 .stats {
     display: flex;
     justify-content: space-around;
-    margin-top: 4px;
     background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7));
     padding: 6px;
-    border-radius: 12px;
-    border: 2px solid var(--gold);
+    border-radius: 0;
+    border-bottom: 2px solid var(--gold);
 }
 
 .counter {
@@ -52,7 +50,7 @@ body {
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
     border: 3px solid var(--gold);
     position: relative;
-    margin-bottom: 4px;
+    margin: 10px;
 }
 
 .player-area, .banker-area {
@@ -74,7 +72,7 @@ body {
 
 .card-slot {
     width: 110px;
-    height: 160px; /* Maintaining 7:10 aspect ratio */
+    height: 160px;
     background-color: rgba(255, 255, 255, 0.1);
     border: 2px dashed rgba(255, 255, 255, 0.3);
     border-radius: 10px;
@@ -108,6 +106,7 @@ body {
     text-align: center;
     border: 2px solid var(--dark-gold);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    margin: 10px;
 }
 
 .prompt {
@@ -120,15 +119,19 @@ body {
 }
 
 .options {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 8px;
+    padding: 10px;
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 .option-btn {
-    padding: 8px 16px;
+    padding: 12px 16px;
     font-size: 1em;
     background: linear-gradient(145deg, #333 0%, #444 100%);
     color: var(--gold);
@@ -140,17 +143,26 @@ body {
     letter-spacing: 1.5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     font-weight: bold;
+    min-height: 50px;
 }
 
-.option-btn:hover {
+.option-btn:hover:not(:disabled) {
     background: linear-gradient(145deg, #444 0%, #555 100%);
     transform: translateY(-3px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
-.option-btn:active {
+.option-btn:active:not(:disabled) {
     transform: translateY(1px);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.option-btn:disabled {
+    background: linear-gradient(145deg, #2a2a2a 0%, #333 100%);
+    border-color: #555;
+    color: #666;
+    cursor: default;
+    opacity: 0.7;
 }
 
 .feedback {
@@ -178,6 +190,68 @@ body {
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
+.rules-section {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.95));
+    padding: 15px;
+    border-radius: 15px;
+    margin: 10px;
+    border: 2px solid var(--dark-gold);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.rules-block {
+    margin-bottom: 20px;
+}
+
+.rules-block:last-child {
+    margin-bottom: 0;
+}
+
+.rules-block h3 {
+    color: var(--gold);
+    text-align: center;
+    margin: 0 0 10px 0;
+    font-size: 1.3em;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
+}
+
+.banker-note {
+    color: var(--gold);
+    text-align: center;
+    margin: 10px 0;
+    padding: 10px;
+    font-style: italic;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.3);
+    line-height: 1.4;
+}
+
+.rules-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.rules-table th, .rules-table td {
+    padding: 8px 12px;
+    text-align: left;
+    border: 1px solid var(--dark-gold);
+}
+
+.rules-table th {
+    background: linear-gradient(145deg, #333 0%, #444 100%);
+    color: var(--gold);
+    font-weight: bold;
+    font-size: 0.95em;
+}
+
+.rules-table td {
+    color: white;
+    font-size: 0.95em;
+}
+
 h2 {
     color: var(--gold);
     margin: 0;
@@ -188,21 +262,13 @@ h2 {
 }
 
 @media (max-width: 768px) {
-    body {
-        padding: 5px;
-    }
-
-    .game-container {
-        padding: 10px;
-    }
-
     .card-slot {
         width: 80px;
         height: 116px;
     }
 
     .option-btn {
-        padding: 6px 12px;
+        padding: 10px;
         font-size: 0.9em;
     }
 
@@ -213,6 +279,15 @@ h2 {
     h2 {
         font-size: 1.3em;
     }
+
+    .rules-table th, .rules-table td {
+        padding: 6px;
+        font-size: 0.85em;
+    }
+
+    .banker-note {
+        font-size: 0.85em;
+    }
 }
 
 @media (max-width: 480px) {
@@ -222,14 +297,9 @@ h2 {
     }
 
     .option-btn {
-        padding: 5px 10px;
+        padding: 8px;
         font-size: 0.85em;
-        width: 100%;
-    }
-
-    .options {
-        flex-direction: column;
-        gap: 5px;
+        min-height: 40px;
     }
 
     .prompt {
@@ -238,5 +308,15 @@ h2 {
 
     h2 {
         font-size: 1.1em;
+    }
+
+    .rules-table th, .rules-table td {
+        padding: 4px;
+        font-size: 0.75em;
+    }
+
+    .banker-note {
+        font-size: 0.75em;
+        padding: 6px;
     }
 }
