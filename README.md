@@ -5,6 +5,7 @@ An interactive web application to help dealers and players learn and practice Ba
 ## Features
 
 - Interactive card display with realistic playing cards
+- Two different card face designs (press 's' to switch)
 - Real-time feedback on decisions
 - Performance tracking (correct/incorrect/total hands)
 - Clear display of Banker's third card drawing rules
@@ -41,6 +42,7 @@ No server or build process is required - the application runs entirely in the br
 4. Finally, determine if the Banker should draw based on their total and the Player's third card (if any)
 5. Get immediate feedback on your decisions
 6. Track your progress with the score counter
+7. Press 's' key to switch between different card face designs
 
 ## Rules Reference
 
@@ -64,8 +66,9 @@ Contributions are welcome! Here's how you can help:
 - Add sound effects for card dealing and feedback
 - Include additional statistics and tracking
 - Add a practice mode focusing on specific scenarios
-- Implement keyboard shortcuts
+- Add keyboard shortcuts for common actions
 - Add multi-language support
+- Add more card face designs
 
 ## License
 

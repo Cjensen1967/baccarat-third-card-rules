@@ -12,7 +12,9 @@ class BaccaratTrainer {
             bankerThirdCard: null
         };
         this.currentStep = 'natural';
+        this.currentCardSet = 'assets'; // Track current card set
         this.initializeButtons();
+        this.updateCardSetIndicator();
         this.dealNewHand();
     }
 
@@ -22,6 +24,28 @@ class BaccaratTrainer {
             const btn = document.getElementById(btnId);
             btn.onclick = () => this.handleButtonClick(btnId);
         });
+
+        // Make the card set switcher clickable
+        const switcher = document.querySelector('.card-set-switcher');
+        if (switcher) {
+            switcher.onclick = () => this.switchCardSet();
+        }
+    }
+
+    // New method to update the card set indicator
+    updateCardSetIndicator() {
+        const indicator = document.getElementById('current-card-set');
+        if (indicator) {
+            indicator.textContent = this.currentCardSet === 'assets' ? 'Style 1' : 'Style 2';
+        }
+    }
+
+    // Updated method to switch card sets
+    switchCardSet() {
+        this.currentCardSet = this.currentCardSet === 'assets' ? 'assets2' : 'assets';
+        this.updateCardSetIndicator();
+        // Redeal hand to show new card faces
+        this.dealNewHand();
     }
 
     handleButtonClick(btnId) {
@@ -115,7 +139,7 @@ class BaccaratTrainer {
         const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'];
         const suit = suits[Math.floor(Math.random() * suits.length)];
         const value = values[Math.floor(Math.random() * values.length)];
-        return { suit, value, img: `assets/${suit}${value}.png` };
+        return { suit, value, img: `${this.currentCardSet}/${suit}${value}.png` };
     }
 
     displayCards() {
@@ -311,3 +335,10 @@ class BaccaratTrainer {
 
 // Initialize the game
 const game = new BaccaratTrainer();
+
+// Add keyboard shortcut to switch card sets (press 's')
+document.addEventListener('keydown', (event) => {
+    if (event.key.toLowerCase() === 's') {
+        game.switchCardSet();
+    }
+});

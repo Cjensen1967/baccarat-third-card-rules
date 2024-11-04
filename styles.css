@@ -30,10 +30,13 @@ body {
 .stats {
     display: flex;
     justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
     background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7));
     padding: 6px;
     border-radius: 0;
     border-bottom: 2px solid var(--gold);
+    gap: 10px;
 }
 
 .counter {
@@ -41,6 +44,23 @@ body {
     color: var(--gold);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     font-weight: bold;
+}
+
+.card-set-switcher {
+    font-size: 1em;
+    color: var(--gold);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.3);
+    padding: 4px 12px;
+    border-radius: 4px;
+    border: 1px solid var(--dark-gold);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.card-set-switcher:hover {
+    background: rgba(0, 0, 0, 0.5);
+    transform: translateY(-1px);
 }
 
 .baccarat-table {
@@ -288,6 +308,11 @@ h2 {
     .banker-note {
         font-size: 0.85em;
     }
+
+    .card-set-switcher {
+        font-size: 0.9em;
+        padding: 3px 10px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -318,5 +343,10 @@ h2 {
     .banker-note {
         font-size: 0.75em;
         padding: 6px;
+    }
+
+    .card-set-switcher {
+        font-size: 0.8em;
+        padding: 2px 8px;
     }
 }
