@@ -66,12 +66,21 @@ class BaccaratTrainer {
         }
     }
 
+    clearFeedback() {
+        const feedback = document.getElementById('feedback');
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+    }
+
     updateButtonStates(activeButtons, labels) {
         // First disable all buttons during transition
         ['btn-1', 'btn-2', 'btn-3', 'btn-4'].forEach(btnId => {
             const btn = document.getElementById(btnId);
             btn.disabled = true;
         });
+
+        // Clear feedback when updating buttons for new step
+        this.clearFeedback();
 
         // Then update states after a short delay
         setTimeout(() => {
