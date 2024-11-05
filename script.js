@@ -15,7 +15,7 @@ class BaccaratTrainer {
         this.currentCardSet = 'assets'; // Track current card set
         this.initializeButtons();
         this.updateCardSetIndicator();
-        this.dealNewHand();
+        this.dealNewHand(true);
     }
 
     initializeButtons() {
@@ -45,7 +45,7 @@ class BaccaratTrainer {
         this.currentCardSet = this.currentCardSet === 'assets' ? 'assets2' : 'assets';
         this.updateCardSetIndicator();
         // Redeal hand to show new card faces
-        this.dealNewHand();
+        this.dealNewHand(false);
     }
 
     handleButtonClick(btnId) {
@@ -120,7 +120,7 @@ class BaccaratTrainer {
         }, 100);
     }
 
-    dealNewHand() {
+    dealNewHand(isNewHand = true) {
         this.currentHand = {
             player: [this.drawRandomCard(), this.drawRandomCard()],
             banker: [this.drawRandomCard(), this.drawRandomCard()],
@@ -128,7 +128,9 @@ class BaccaratTrainer {
             bankerThirdCard: null
         };
         this.currentStep = 'natural';
-        this.stats.hands++;
+        if (isNewHand) {
+            this.stats.hands++;
+        }
         this.updateStats();
         this.displayCards();
         this.showNaturalDecision();
@@ -143,19 +145,42 @@ class BaccaratTrainer {
     }
 
     displayCards() {
+        // Reset all card slots
+        for (let i = 1; i <= 3; i++) {
+            const playerSlot = document.getElementById(`player-card-${i}`);
+            const bankerSlot = document.getElementById(`banker-card-${i}`);
+            playerSlot.innerHTML = '';
+            bankerSlot.innerHTML = '';
+            playerSlot.classList.remove('filled');
+            bankerSlot.classList.remove('filled');
+        }
+
         // Display Player cards
         this.currentHand.player.forEach((card, index) => {
             const slot = document.getElementById(`player-card-${index + 1}`);
             slot.innerHTML = `<img src="${card.img}" alt="${card.value} of ${card.suit}">`;
+            slot.classList.add('filled');
         });
-        document.getElementById('player-card-3').innerHTML = '';
 
         // Display Banker cards
         this.currentHand.banker.forEach((card, index) => {
             const slot = document.getElementById(`banker-card-${index + 1}`);
             slot.innerHTML = `<img src="${card.img}" alt="${card.value} of ${card.suit}">`;
+            slot.classList.add('filled');
         });
-        document.getElementById('banker-card-3').innerHTML = '';
+
+        // Display third cards if they exist
+        if (this.currentHand.playerThirdCard) {
+            const slot = document.getElementById('player-card-3');
+            slot.innerHTML = `<img src="${this.currentHand.playerThirdCard.img}" alt="${this.currentHand.playerThirdCard.value} of ${this.currentHand.playerThirdCard.suit}">`;
+            slot.classList.add('filled');
+        }
+
+        if (this.currentHand.bankerThirdCard) {
+            const slot = document.getElementById('banker-card-3');
+            slot.innerHTML = `<img src="${this.currentHand.bankerThirdCard.img}" alt="${this.currentHand.bankerThirdCard.value} of ${this.currentHand.bankerThirdCard.suit}">`;
+            slot.classList.add('filled');
+        }
     }
 
     calculateHandValue(hand) {
@@ -196,7 +221,7 @@ class BaccaratTrainer {
             this.showFeedback(true, "Correct!");
             this.stats.correct++;
             if (isNatural) {
-                setTimeout(() => this.dealNewHand(), 1500);
+                setTimeout(() => this.dealNewHand(true), 1500);
             } else {
                 this.currentStep = 'playerDraw';
                 setTimeout(() => this.showPlayerDrawDecision(), 1500);
@@ -226,8 +251,9 @@ class BaccaratTrainer {
             this.stats.correct++;
             if (shouldDraw) {
                 this.currentHand.playerThirdCard = this.drawRandomCard();
-                document.getElementById('player-card-3').innerHTML = 
-                    `<img src="${this.currentHand.playerThirdCard.img}" alt="${this.currentHand.playerThirdCard.value} of ${this.currentHand.playerThirdCard.suit}">`;
+                const slot = document.getElementById('player-card-3');
+                slot.innerHTML = `<img src="${this.currentHand.playerThirdCard.img}" alt="${this.currentHand.playerThirdCard.value} of ${this.currentHand.playerThirdCard.suit}">`;
+                slot.classList.add('filled');
             }
             this.currentStep = 'bankerDraw';
             setTimeout(() => this.showBankerDrawDecision(), 1500);
@@ -271,8 +297,9 @@ class BaccaratTrainer {
             this.stats.correct++;
             if (shouldDraw) {
                 this.currentHand.bankerThirdCard = this.drawRandomCard();
-                document.getElementById('banker-card-3').innerHTML = 
-                    `<img src="${this.currentHand.bankerThirdCard.img}" alt="${this.currentHand.bankerThirdCard.value} of ${this.currentHand.bankerThirdCard.suit}">`;
+                const slot = document.getElementById('banker-card-3');
+                slot.innerHTML = `<img src="${this.currentHand.bankerThirdCard.img}" alt="${this.currentHand.bankerThirdCard.value} of ${this.currentHand.bankerThirdCard.suit}">`;
+                slot.classList.add('filled');
             }
             this.currentStep = 'final';
             setTimeout(() => this.showFinalDecision(), 1500);
@@ -304,7 +331,7 @@ class BaccaratTrainer {
         if (choice === correctOutcome) {
             this.showFeedback(true, `Correct! Final scores - Player: ${playerFinal}, Banker: ${bankerFinal}`);
             this.stats.correct++;
-            setTimeout(() => this.dealNewHand(), 2000);
+            setTimeout(() => this.dealNewHand(true), 2000);
         } else {
             this.showFeedback(false, "Incorrect. Try again!");
             this.stats.incorrect++;
