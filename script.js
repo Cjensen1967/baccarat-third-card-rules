@@ -3,7 +3,8 @@ class BaccaratTrainer {
         this.stats = {
             correct: 0,
             incorrect: 0,
-            hands: 0
+            hands: 0,
+            peeks: 0
         };
         this.currentHand = {
             player: [],
@@ -14,6 +15,7 @@ class BaccaratTrainer {
         this.currentStep = 'natural';
         this.currentCardSet = 'assets'; // Track current card set
         this.initializeButtons();
+        this.initializeRulesSection();
         this.updateCardSetIndicator();
         this.dealNewHand(true);
     }
@@ -30,6 +32,20 @@ class BaccaratTrainer {
         if (switcher) {
             switcher.onclick = () => this.switchCardSet();
         }
+    }
+
+    initializeRulesSection() {
+        const rulesSection = document.getElementById('rules-section');
+        // Ensure rules start collapsed
+        rulesSection.removeAttribute('open');
+        
+        // Track when rules are viewed
+        rulesSection.addEventListener('toggle', (event) => {
+            if (rulesSection.open) {
+                this.stats.peeks++;
+                this.updateStats();
+            }
+        });
     }
 
     // New method to update the card set indicator
@@ -121,6 +137,10 @@ class BaccaratTrainer {
     }
 
     dealNewHand(isNewHand = true) {
+        // Collapse rules at start of new hand
+        const rulesSection = document.getElementById('rules-section');
+        rulesSection.removeAttribute('open');
+
         this.currentHand = {
             player: [this.drawRandomCard(), this.drawRandomCard()],
             banker: [this.drawRandomCard(), this.drawRandomCard()],
@@ -357,6 +377,7 @@ class BaccaratTrainer {
         document.getElementById('correct-count').textContent = this.stats.correct;
         document.getElementById('incorrect-count').textContent = this.stats.incorrect;
         document.getElementById('hands-count').textContent = this.stats.hands;
+        document.getElementById('peeks-count').textContent = this.stats.peeks;
     }
 }
 

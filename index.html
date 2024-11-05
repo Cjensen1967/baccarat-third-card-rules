@@ -12,6 +12,7 @@
             <div class="counter">Correct: <span id="correct-count">0</span></div>
             <div class="counter">Incorrect: <span id="incorrect-count">0</span></div>
             <div class="counter">Hands: <span id="hands-count">0</span></div>
+            <div class="counter">Peeks: <span id="peeks-count">0</span></div>
             <div class="card-set-switcher">Press 'S' to switch card style (<span id="current-card-set">Style 1</span>)</div>
         </div>
 
@@ -48,17 +49,23 @@
             <div id="feedback" class="feedback"></div>
         </div>
 
-        <div class="rules-section">
-            <div class="rules-title">Banker Drawing Rules When Player Takes a Third Card:</div>
-            <ul class="rules-list">
-                <li><strong>Total of 0-2:</strong> Always draw</li>
-                <li><strong>Total of 3:</strong> Draw unless Player's third card is 8</li>
-                <li><strong>Total of 4:</strong> Draw if Player's third card is 2-7</li>
-                <li><strong>Total of 5:</strong> Draw if Player's third card is 4-7</li>
-                <li><strong>Total of 6:</strong> Draw if Player's third card is 6-7</li>
-                <li><strong>Total of 7:</strong> Stand</li>
-            </ul>
-        </div>
+        <details class="rules-section" id="rules-section">
+            <summary class="rules-title">Drawing Rules</summary>
+            <div class="rules-content">
+                <ul class="rules-list">
+                    <li><strong>Player Hand:</strong> Total 0-5: Draws a card. Total 6-7: Stands.</li>
+                    <li><strong>Banker Hand:</strong></li>
+                    <li>If Player stands, follows Player rule.</li>
+                    <li>If Player draws a third card:</li>
+                    <li class="indented">Total of 0-2: Always draw</li>
+                    <li class="indented">Total of 3: Draw unless Player's third card is 8</li>
+                    <li class="indented">Total of 4: Draw if Player's third card is 2-7</li>
+                    <li class="indented">Total of 5: Draw if Player's third card is 4-7</li>
+                    <li class="indented">Total of 6: Draw if Player's third card is 6-7</li>
+                    <li class="indented">Total of 7: Stand</li>
+                </ul>
+            </div>
+        </details>
     </div>
     <script src="script.js"></script>
 </body>
