@@ -224,66 +224,29 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.rules-block {
-    margin-bottom: 20px;
-}
-
-.rules-block:last-child {
-    margin-bottom: 0;
-}
-
-.rules-block h3 {
-    color: var(--gold);
-    text-align: center;
-    margin: 0 0 10px 0;
-    font-size: 1.3em;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    letter-spacing: 2px;
-}
-
-.banker-note {
-    color: var(--gold);
-    text-align: center;
-    margin: 10px 0;
-    padding: 10px;
-    font-style: italic;
-    border-radius: 5px;
-    background: rgba(0, 0, 0, 0.3);
-    line-height: 1.4;
-}
-
-.rules-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 0 auto;
-    background: rgba(0, 0, 0, 0.3);
-}
-
-.rules-table th, .rules-table td {
-    padding: 8px 12px;
-    text-align: left;
-    border: 1px solid var(--dark-gold);
-}
-
-.rules-table th {
-    background: linear-gradient(145deg, #333 0%, #444 100%);
+.rules-title {
     color: var(--gold);
     font-weight: bold;
-    font-size: 0.95em;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 1.1em;
 }
 
-.rules-table td {
-    color: white;
-    font-size: 0.95em;
-}
-
-h2 {
-    color: var(--gold);
+.rules-list {
+    list-style-type: none;
+    padding: 0;
     margin: 0;
-    font-size: 1.4em;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    letter-spacing: 2px;
-    text-transform: uppercase;
+}
+
+.rules-list li {
+    color: white;
+    margin-bottom: 8px;
+    line-height: 1.4;
+    padding-left: 15px;
+}
+
+.rules-list li strong {
+    color: var(--gold);
 }
 
 @media (max-width: 768px) {
@@ -305,13 +268,12 @@ h2 {
         font-size: 1.3em;
     }
 
-    .rules-table th, .rules-table td {
-        padding: 6px;
-        font-size: 0.85em;
+    .rules-title {
+        font-size: 1em;
     }
 
-    .banker-note {
-        font-size: 0.85em;
+    .rules-list li {
+        font-size: 0.9em;
     }
 
     .card-set-switcher {
@@ -340,14 +302,12 @@ h2 {
         font-size: 1.1em;
     }
 
-    .rules-table th, .rules-table td {
-        padding: 4px;
-        font-size: 0.75em;
+    .rules-title {
+        font-size: 0.9em;
     }
 
-    .banker-note {
-        font-size: 0.75em;
-        padding: 6px;
+    .rules-list li {
+        font-size: 0.85em;
     }
 
     .card-set-switcher {

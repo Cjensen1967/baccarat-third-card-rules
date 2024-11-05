@@ -49,46 +49,15 @@
         </div>
 
         <div class="rules-section">
-            <div class="rules-block">
-                <h3>Banker Hand Rules:</h3>
-                <div class="banker-note">
-                    When the Player hand stands on 6 or 7 the Banker hand will always draw a third card on totals of 0 through 5 and stand on 6 through 9.
-                </div>
-                <table class="rules-table">
-                    <tr>
-                        <th>When the Banker's first two cards total:</th>
-                        <th>Banker draws when Player's third card is:</th>
-                    </tr>
-                    <tr>
-                        <td>0, 1, 2</td>
-                        <td>Banker hand always draws</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Banker hand draws unless Player's third card is 8</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>2 – 7</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>4 – 7</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>6 – 7</td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>Banker hand stands</td>
-                    </tr>
-                    <tr>
-                        <td>8 – 9</td>
-                        <td>Natural – Neither hand draws</td>
-                    </tr>
-                </table>
-            </div>
+            <div class="rules-title">When Player DOES take a third card:</div>
+            <ul class="rules-list">
+                <li><strong>Total of 0-2:</strong> Always draw</li>
+                <li><strong>Total of 3:</strong> Draw unless Player's third card is 8</li>
+                <li><strong>Total of 4:</strong> Draw if Player's third card is 2-7</li>
+                <li><strong>Total of 5:</strong> Draw if Player's third card is 4-7</li>
+                <li><strong>Total of 6:</strong> Draw if Player's third card is 6-7</li>
+                <li><strong>Total of 7:</strong> Stand</li>
+            </ul>
         </div>
     </div>
     <script src="script.js"></script>
